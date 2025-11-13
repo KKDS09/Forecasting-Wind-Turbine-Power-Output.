@@ -8,6 +8,15 @@ best_model = joblib.load("models/wind_power_model.pkl")          # best model (X
 # preprocess_input = joblib.load("models/preprocess_input.pkl")    # preprocessing function
 metadata = joblib.load("models/model_metadata.pkl")              # features + metrics
 
+# --- Preprocessing function ---
+def preprocess_input(df):
+    df = df.copy()
+    df['Wind_Speed_Cubed'] = df['Wind Speed (m/s)'] ** 3
+    df['Dir_Sin'] = np.sin(np.radians(df['Wind Direction (°)']))
+    df['Dir_Cos'] = np.cos(np.radians(df['Wind Direction (°)']))
+    df['Rolling_Speed'] = df['Wind Speed (m/s)']  # for single-point prediction
+    return df[['Wind Speed (m/s)', 'Wind_Speed_Cubed', 'Dir_Sin', 'Dir_Cos', 'Rolling_Speed']]
+
 # --- App Title ---
 st.title("Wind Turbine Power Prediction System")
 st.markdown("Enter operational parameters to estimate turbine power output.")
