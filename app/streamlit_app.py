@@ -36,7 +36,7 @@ if st.button("Predict Power Output"):
 
     # Apply preprocessing
     final_features = preprocess_input(input_df)
-    prediction = best_model.predict(final_features)[0]
+    prediction = max(0,best_model.predict(final_features)[0])
 
     # Display prediction
     st.subheader(f"Predicted Power Output: {prediction:.2f} kW")
