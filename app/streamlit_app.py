@@ -51,8 +51,8 @@ if st.button("Predict Power Output"):
     final_features = preprocess_input(input_df)
     prediction = max(0, best_model.predict(final_features)[0])
     
-    # Simple theoretical power calculation (defaults: air_density=1.225, swept_area=4000, efficiency=0.4)
-    theoretical = 0.5 * 1.225 * 4000 * (wind_speed ** 3) * 0.4 / 1000  # in kW
+    # Calibrated theoretical power (A=8500 m² for ~3600 kW rated at 12 m/s; ρ=1.225, Cp=0.4)
+    theoretical = 0.5 * 1.225 * 8500 * (wind_speed ** 3) * 0.4 / 1000  # in kW
     
     # Display prediction
     st.subheader(f"Predicted Power Output: {prediction:.2f} kW")
@@ -65,20 +65,24 @@ if st.button("Predict Power Output"):
     else:
         st.markdown("<span style='color:green'>HIGH → Peak Performance</span>", unsafe_allow_html=True)
     
-    #Bar Plot: Predicted vs Theoretical
+    # Improved Bar Plot: Predicted vs Theoretical
     fig, ax = plt.subplots(figsize=(6, 4))
     categories = ['Predicted', 'Theoretical']
     values = [prediction, theoretical]
     colors = ['#1f77b4', '#2ca02c']  # Blue and green for consistency
     bars = ax.bar(categories, values, color=colors)
     ax.set_ylabel('Power (kW)')
-    ax.set_title('Power Output Comparison')
+    ax.set_title(f'Power Output Comparison at {wind_speed:.1f} m/s Wind Speed')
     ax.grid(axis='y', linestyle='--', alpha=0.7)
     # Add value labels on bars
     for bar, value in zip(bars, values):
         ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 50, f'{value:.0f}', ha='center', va='bottom')
     plt.tight_layout()
     st.pyplot(fig)
+    
+    # Note on Theoretical Calculation
+    with st.expander("Theoretical Calculation Note"):
+        st.write("Theoretical power uses: Air density = 1.225 kg/m³, Swept area ≈ 8500 m² (calibrated to dataset max ~3600 kW), Efficiency (Cp) = 0.4. Model predictions incorporate real data variations.")
     
     # Sample Predictions Table
     sample_data = {
