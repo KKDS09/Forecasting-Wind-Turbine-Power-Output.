@@ -31,7 +31,7 @@ with st.sidebar:
 
 # --- App Title ---
 st.title("Wind Turbine Power Prediction System")
-st.image("turbine_header.jpg", caption="Wind Turbine Power Forecasting", use_column_width=True)
+# st.image("turbine_header.jpg", caption="Wind Turbine Power Forecasting", use_column_width=True)  # Commented out: Add file or use URL
 st.markdown("Enter operational parameters to estimate turbine power output.")
 
 # --- User Inputs with Columns ---
@@ -65,7 +65,7 @@ if st.button("Predict Power Output"):
     else:
         st.markdown("<span style='color:green'>HIGH → Peak Performance</span>", unsafe_allow_html=True)
     
-    # Improved Bar Plot: Predicted vs Theoretical
+    #Bar Plot: Predicted vs Theoretical
     fig, ax = plt.subplots(figsize=(6, 4))
     categories = ['Predicted', 'Theoretical']
     values = [prediction, theoretical]
