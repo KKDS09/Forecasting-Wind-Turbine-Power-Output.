@@ -1,7 +1,7 @@
 # Wind Turbine Power Prediction System
 
 
-[![Streamlit App](https://img.shields.io/badge/Streamlit-App-blue.svg)](https://your-streamlit-app-url.streamlit.app/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
+[![Streamlit App](https://img.shields.io/badge/Streamlit-App-blue.svg)](https://share.streamlit.io/user/kkds09) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
 
 
 A machine learning-based system to forecast the power output of wind turbines using SCADA data. This project trains regression models on historical wind speed, direction, and power readings to enable real-time predictions, supporting renewable energy planning and grid integration.
@@ -133,7 +133,7 @@ See `notebooks/training_notebook.ipynb` for full code and plots (e.g., actual vs
 
 ## Deployment
 - **Platform**: Streamlit Cloud (free tier).
-- **Live Demo**: [Try the App](https://your-streamlit-app-url.streamlit.app/).
+- **Live Demo**: [Try the App](https://forecasting-wind-turbine-power-output-kxiwdzxxpjzpev2jbirn6a.streamlit.app/).
 - **Customization**: Edit `app/streamlit_app.py` for new features (e.g., batch predictions).
 - **Scaling**: For production, integrate with Flask/Docker and host on AWS/Heroku.
 
