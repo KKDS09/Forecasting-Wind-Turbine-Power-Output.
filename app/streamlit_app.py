@@ -31,6 +31,7 @@ with st.sidebar:
 
 # --- App Title ---
 st.title("Wind Turbine Power Prediction System")
+st.image("turbine_header.jpg", caption="Wind Turbine Power Forecasting", use_column_width=True)
 st.markdown("Enter operational parameters to estimate turbine power output.")
 
 # --- User Inputs with Columns ---
@@ -65,13 +66,17 @@ if st.button("Predict Power Output"):
         st.markdown("<span style='color:green'>HIGH → Peak Performance</span>", unsafe_allow_html=True)
     
     # Simple Bar Plot: Predicted vs Theoretical
-    fig, ax = plt.subplots()
     categories = ['Predicted', 'Theoretical']
     values = [prediction, theoretical]
-    colors = ['blue', 'green']
-    ax.bar(categories, values, color=colors)
+    colors = ['#1f77b4', '#2ca02c']  # Blue and green for consistency
+    bars = ax.bar(categories, values, color=colors)
     ax.set_ylabel('Power (kW)')
-    ax.set_title('Power Comparison')
+    ax.set_title('Power Output Comparison')
+    ax.grid(axis='y', linestyle='--', alpha=0.7)
+    # Add value labels on bars
+    for bar, value in zip(bars, values):
+        ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 50, f'{value:.0f}', ha='center', va='bottom')
+    plt.tight_layout()
     st.pyplot(fig)
 
 # --- Optional: Image Placeholder (add your turbine image here if available) ---
