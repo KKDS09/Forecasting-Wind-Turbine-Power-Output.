@@ -65,7 +65,8 @@ if st.button("Predict Power Output"):
     else:
         st.markdown("<span style='color:green'>HIGH → Peak Performance</span>", unsafe_allow_html=True)
     
-    # Simple Bar Plot: Predicted vs Theoretical
+    # Improved Bar Plot: Predicted vs Theoretical
+    fig, ax = plt.subplots(figsize=(6, 4))
     categories = ['Predicted', 'Theoretical']
     values = [prediction, theoretical]
     colors = ['#1f77b4', '#2ca02c']  # Blue and green for consistency
@@ -78,6 +79,12 @@ if st.button("Predict Power Output"):
         ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 50, f'{value:.0f}', ha='center', va='bottom')
     plt.tight_layout()
     st.pyplot(fig)
-
-# --- Optional: Image Placeholder (add your turbine image here if available) ---
-# st.image("turbine_image.jpg", caption="Wind Turbine Example", use_column_width=True)
+    
+    # Sample Predictions Table
+    sample_data = {
+        'Wind Speed (m/s)': [2.0, 5.0, 7.0, 12.0, 15.0],
+        'Direction (°)': [0, 90, 180, 270, 360],
+        'Predicted (kW)': ['~50', '~400', '~900', '~1500', '~1800'],  # Approximate from your tests
+        'Status': ['LOW', 'NORMAL', 'NORMAL', 'HIGH', 'HIGH']
+    }
+    st.dataframe(pd.DataFrame(sample_data), use_container_width=True)
