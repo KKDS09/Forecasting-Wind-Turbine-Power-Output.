@@ -1,4 +1,4 @@
-# Wind Turbine Power Prediction System
+# Wind Turbine Power Prediction System.
 
 
 [![Streamlit App](https://img.shields.io/badge/Streamlit-App-blue.svg)](https://share.streamlit.io/user/kkds09) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Python 3.8+](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/)
